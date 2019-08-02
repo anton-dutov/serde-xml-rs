@@ -50,7 +50,7 @@ mod error;
 pub mod de;
 pub mod ser;
 
-pub use error::{Error, ErrorKind};
+pub use crate::error::{Error, ErrorKind};
 pub use xml::reader::{EventReader, ParserConfig};
-pub use ser::{to_string, to_writer, Serializer};
-pub use de::{from_reader, from_str, Deserializer};
+pub use crate::ser::{to_string, to_writer, Serializer};
+pub use crate::de::{from_reader, from_str, Deserializer};

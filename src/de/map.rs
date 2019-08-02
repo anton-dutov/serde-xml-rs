@@ -4,8 +4,8 @@ use serde::de::{self, IntoDeserializer};
 use xml::attribute::OwnedAttribute;
 use xml::reader::XmlEvent;
 
-use Deserializer;
-use error::{Error, Result};
+use crate::Deserializer;
+use crate::error::{Error, Result};
 
 pub struct MapAccess<'a, R: 'a + Read> {
     attrs: ::std::vec::IntoIter<OwnedAttribute>,
@@ -19,8 +19,8 @@ impl<'a, R: 'a + Read> MapAccess<'a, R> {
         MapAccess {
             attrs: attrs.into_iter(),
             next_value: None,
-            de: de,
-            inner_value: inner_value,
+            de,
+            inner_value,
         }
     }
 }

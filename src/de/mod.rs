@@ -4,7 +4,7 @@ use serde::de::{self, Unexpected};
 use xml::reader::{EventReader, ParserConfig, XmlEvent};
 use xml::name::OwnedName;
 
-use error::{Error, ErrorKind, Result};
+use crate::error::{Error, ErrorKind, Result};
 use self::map::MapAccess;
 use self::seq::SeqAccess;
 use self::var::EnumAccess;
@@ -70,8 +70,8 @@ pub struct Deserializer<R: Read> {
 impl<'de, R: Read> Deserializer<R> {
     pub fn new(reader: EventReader<R>) -> Self {
         Deserializer {
+            reader,
             depth: 0,
-            reader: reader,
             peeked: None,
             is_map_value: false,
         }
@@ -177,7 +177,7 @@ impl<'de, R: Read> Deserializer<R> {
             }
 
             expect!(this.next()?, XmlEvent::Characters(s) => {
-                return Ok(s)
+                Ok(s)
             })
         })
     }

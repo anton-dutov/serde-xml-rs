@@ -3,7 +3,7 @@ use std::fmt::Display;
 
 use serde::ser::{self, Impossible, Serialize};
 
-use error::{Error, ErrorKind, Result};
+use crate::error::{Error, ErrorKind, Result};
 use self::var::{Map, Struct};
 
 mod var;
@@ -87,7 +87,7 @@ where
     W: Write,
 {
     pub fn new(writer: W) -> Self {
-        Self { writer: writer }
+        Self { writer }
     }
 
     fn write_primitive<P: Display>(&mut self, primitive: P) -> Result<()> {
